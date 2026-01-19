@@ -49,16 +49,28 @@
 }
 
 [data-theme="light"] {
-    --bg-color: #f8fafc;
-    --bg-light: #e2e8f0;
-    --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%);
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --primary-color: #0284c7;
-    /* Darker Blue for contrast on light */
-    --secondary-color: #4f46e5;
-    --card-bg: rgba(255, 255, 255, 0.8);
-    --glass-border: 1px solid rgba(0, 0, 0, 0.1);
+    /* Vibrant "Slick" Theme (Reference Image 3) */
+    --bg-color: #2e0249;
+    /* Deep Purple */
+    --bg-light: #570a57;
+    /* Magenta/Purple mix */
+    --bg-gradient: linear-gradient(135deg, #2e0249 0%, #a91079 50%, #570a57 100%);
+    /* Vibrant Purple-Pink Gradient */
+
+    --text-primary: #ffffff;
+    /* White text on dark vibrant bg */
+    --text-secondary: #e2e8f0;
+    /* Light gray */
+
+    --primary-color: #f806cc;
+    /* Hot Pink/Magenta */
+    --secondary-color: #a91079;
+    /* Deep Pink */
+    --accent-pink: #ff0099;
+
+    --card-bg: rgba(255, 255, 255, 0.1);
+    /* Glassmorphism */
+    --glass-border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 * {
@@ -274,6 +286,7 @@ body {
     line-height: 1.1;
     background: linear-gradient(45deg, #fff, #a0a0b0);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -715,6 +728,7 @@ section {
     margin-bottom: 20px;
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -904,6 +918,27 @@ section {
     font-size: 0.9rem;
 }
 
+/* Mobile Menu Bars */
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-primary);
+    margin: 5px 0;
+    transition: var(--transition);
+}
+
+.menu-btn.open .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.menu-btn.open .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-btn.open .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
 /* Responsive */
 @media (max-width: 992px) {
     .hero-content {
@@ -915,6 +950,14 @@ section {
     .hero-visual {
         margin-bottom: 50px;
         justify-content: center;
+        width: 100%;
+    }
+
+    .code-window {
+        width: 90%;
+        /* Responsive width */
+        max-width: 450px;
+        margin: 0 auto;
     }
 
     .hero-text {
@@ -953,18 +996,23 @@ section {
 
     .nav-links {
         display: none;
-        /* Mobile menu implementation usually requires JS, will implement basics later if needed */
         position: absolute;
-        top: 80px;
+        top: 70px;
         left: 0;
         width: 100%;
         background: var(--bg-light);
+        /* Ensure background is solid for readability */
+        backdrop-filter: blur(15px);
+        border-bottom: var(--glass-border);
         flex-direction: column;
-        padding: 20px 0;
+        padding: 30px 0;
+        gap: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 
     .menu-btn {
         display: block;
+        z-index: 1001;
     }
 
     .nav-links.active {
